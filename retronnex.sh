@@ -5,6 +5,11 @@
 PATTERN=${1}
 GITDIR=${2}
 
+if [ ! -d ${GITDIR} ]; then
+	echo "error: ${GITDIR} doesn't exist"
+	exit
+fi
+
 # defaults
 CWD=$(pwd)
 BLUE='\033[1;34m' && NC='\033[0m' 
@@ -13,6 +18,7 @@ BLUE='\033[1;34m' && NC='\033[0m'
 if [ ! "${CWD}" = "${GITDIR}" ]; then
 	cd ${GITDIR}
 fi
+
 # check git has annex first
 if ! git annex info; then
 	exit
