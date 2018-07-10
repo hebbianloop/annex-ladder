@@ -35,6 +35,6 @@ else
 	echo "${FILES}" | sed "s|${GITDIR}./||g" | nl
 	echo -e "\n Removing from git and adding to annex"
 	# remove files from git and annex them
-	git filter-branch --tree-filter 'for '${FILES}';do if [ -f "$FILE" ] && [ ! -L "$FILE" ];then git rm --cached "$FILE";git annex add "$FILE";ln -sf `readlink "$FILE"|sed -e "s:^../../::"` "$FILE";fi;done' --tag-name-filter cat -- --all	
+	git filter-branch --tree-filter 'for '"${FILES}"';do if [ -f "$FILE" ] && [ ! -L "$FILE" ];then git rm --cached "$FILE";git annex add "$FILE";ln -sf `readlink "$FILE"|sed -e "s:^../../::"` "$FILE";fi;done' --tag-name-filter cat -- --all	
 fi
 
