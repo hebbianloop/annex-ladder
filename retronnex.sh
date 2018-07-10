@@ -5,7 +5,7 @@
 PATTERN=${1}
 GITDIR=${2}
 
-if [ ! -d ${GITDIR} ]; then
+if [ ! -d "${GITDIR}" ]; then
 	echo "error: ${GITDIR} doesn't exist"
 	exit
 fi
