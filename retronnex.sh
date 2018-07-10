@@ -25,7 +25,7 @@ if ! git annex info; then
 fi
 
 # look in repository for files matching pattern
-FILES=$(find ${GITDIR}/  \( ! -regex '.*/\..*' \) -type f -name ${PATTERN})
+FILES=$(find "${GITDIR}"/  \( ! -regex '.*/\..*' \) -type f -name ${PATTERN})
 
 echo -e "${BLUE}Found $(echo "${FILES}" | wc -l) files matching ${PATTERN}${NC}"
 echo "${FILES}" | sed "s|${GITDIR}./||g" | nl
