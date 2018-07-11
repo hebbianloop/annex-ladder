@@ -37,6 +37,6 @@ else
 	echo -e "${BLUE}Found $(echo "${FILES}" | wc -l) files matching ${PATTERN}${NC}"
 	echo -e "\n Removing from git and adding to annex"
 	# remove files from git and annex them
-	git filter-branch -f --tree-filter 'for FILE in $(find . \( ! -regex ".*/\..*" \) -type f -name '${PATTERN}');do if [ -f "$FILE" ] && [ ! -L "$FILE" ];then git rm --cached "$FILE";git annex add "$FILE";ln -sf `readlink "$FILE"|sed -e "s:^../../::"` "$FILE";fi;done' --tag-name-filter cat -- --all
+	git filter-branch -f --tree-filter 'for FILE in $(find . \( ! -regex ".*/\..*" \) -type f -name "'${PATTERN}'");do if [ -f "$FILE" ] && [ ! -L "$FILE" ];then git rm --cached "$FILE";git annex add "$FILE";ln -sf `readlink "$FILE"|sed -e "s:^../../::"` "$FILE";fi;done' --tag-name-filter cat -- --all
 fi
 
