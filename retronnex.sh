@@ -29,7 +29,7 @@ if ! git annex info; then
 	exit
 fi
 # check for files
-FILES="$(find .  \( ! -regex ".*/\..*" \) -type f -name ${PATTERN} | tr -s \n)"
+FILES="$(find .  \( ! -regex ".*/\..*" \) -type f -name "${PATTERN}" | tr -s \n)"
 if [ ! "${FILES}" ]; then
 	echo "No Files Found with pattern ${PATTERN} in ${GITDIR}"
 	exit
