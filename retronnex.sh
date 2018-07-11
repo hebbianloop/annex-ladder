@@ -2,8 +2,8 @@
 # Retroactively annex files by pattern
 
 # parse inputs
-PATTERN=${1}
-GITDIR=${2}
+PATTERN="${1}"
+GITDIR="${2}"
 
 if [ "$#" -ne 2 ]; then
     echo "Illegal number of parameters"
@@ -28,12 +28,12 @@ fi
 if ! git annex info; then
 	exit
 fi
-
+# check for files
+FILES=$(find .  \( ! -regex '.*/\..*' \) -type f -name ${PATTERN} | tr -s \n)
 if [ ! "${FILES}" ]; then
 	echo "No Files Found with pattern ${PATTERN} in ${GITDIR}"
 	exit
 else
-	FILES=$(find .  \( ! -regex '.*/\..*' \) -type f -name ${PATTERN} | tr -s \n)
 	echo -e "${BLUE}Found $(echo ${FILES} | wc -l) files matching ${PATTERN}${NC}"
 	echo -e "\n Removing from git and adding to annex"
 	# remove files from git and annex them
